@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b16">
+  <meta name="description" content="A heartfelt Level 18 birthday experience made especially for Zizo.">
+  <title>Zizo's Level 18 Birthday Experience</title>
+  <style>
+    :root {
+      --bg: #090b16;
+      --panel: rgba(18, 22, 42, .76);
+      --panel-solid: #12162a;
+      --text: #f7f7ff;
+      --muted: #aeb5d1;
+      --red: #ff365d;
+      --blue: #4c8dff;
+      --cyan: #6de8ff;
+      --gold: #ffd878;
+      --line: rgba(255,255,255,.12);
+      --radius: 24px;
+      --shadow: 0 24px 80px rgba(0,0,0,.32);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+    body {
+      margin: 0; color: var(--text); background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6; overflow-x: hidden;
+      background-image: radial-gradient(ellipse at 15% 8%, rgba(76,141,255,.12), transparent 35%),
+                        radial-gradient(ellipse at 85% 32%, rgba(255,54,93,.10), transparent 32%);
+    }
+    body::before {
+      content:""; position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:.12;
+      background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 42px 42px; mask-image: linear-gradient(to bottom, black, transparent 75%);
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--cyan); outline-offset: 4px; }
+    .topbar {
+      position: fixed; z-index: 20; top: 12px; left: 50%; transform: translateX(-50%);
+      width: min(1120px, calc(100% - 24px)); display:flex; align-items:center; justify-content:space-between;
+      gap: 14px; padding: 10px 14px; border:1px solid var(--line); border-radius: 18px;
+      background: rgba(9,11,22,.78); backdrop-filter: blur(18px);
+    }
+    .brand { font-weight: 900; letter-spacing: .08em; white-space:nowrap; }
+    .brand span { color: var(--red); }
+    .nav { display:flex; align-items:center; gap: 5px; }
+    .nav a { font-size:.83rem; color:var(--muted); padding:8px 10px; border-radius:10px; transition:.2s; }
+    .nav a:hover { color:white; background:rgba(255,255,255,.08); }
+    .pill { border:1px solid rgba(109,232,255,.28); border-radius:999px; color:var(--cyan); padding:5px 10px; font-size:.72rem; letter-spacing:.12em; white-space:nowrap; }
+    main { overflow:hidden; }
+    section { width:min(1120px, calc(100% - 40px)); margin:0 auto; padding:110px 0; position:relative; }
+    .hero {
+      width:100%; min-height:100svh; display:grid; place-items:center; text-align:center; padding:130px 22px 90px;
+      background: radial-gradient(ellipse at 50% 58%, rgba(76,141,255,.19), transparent 42%),
+                  radial-gradient(ellipse at 48% 78%, rgba(255,54,93,.15), transparent 36%);
+    }
+    .hero-inner { max-width:900px; position:relative; z-index:1; }
+    .eyebrow { color:var(--cyan); font-size:.76rem; font-weight:800; letter-spacing:.24em; text-transform:uppercase; }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { font-size:clamp(3.4rem, 10vw, 7.7rem); line-height:.92; letter-spacing:-.075em; margin:22px 0; }
+    h1 .accent { display:block; color:transparent; background:linear-gradient(100deg, var(--red), #ff8eab 45%, var(--blue)); -webkit-background-clip:text; background-clip:text; }
+    .hero p { color:var(--muted); max-width:620px; margin:0 auto 30px; font-size:clamp(1rem,2.4vw,1.22rem); }
+    .actions { display:flex; justify-content:center; flex-wrap:wrap; gap:12px; }
+    .btn { cursor:pointer; border:0; border-radius:13px; padding:13px 19px; color:white; font-weight:800; transition:transform .2s, box-shadow .2s, background .2s; }
+    .btn:hover { transform:translateY(-3px); }
+    .btn-primary { background:linear-gradient(110deg,var(--red),#ff527b); box-shadow:0 10px 32px rgba(255,54,93,.22); }
+    .btn-secondary { background:rgba(255,255,255,.055); border:1px solid var(--line); }
+    .btn-blue { background:linear-gradient(110deg,#326cf2,#52a6ff); box-shadow:0 10px 32px rgba(76,141,255,.2); }
+    .scroll-note { margin-top:45px; color:#777f9e; font-size:.76rem; letter-spacing:.14em; text-transform:uppercase; }
+    .orb { position:absolute; border-radius:50%; filter:blur(1px); pointer-events:none; }
+    .orb.one { width:210px;height:210px;left:5%;top:24%;background:radial-gradient(circle,rgba(255,54,93,.2),transparent 70%); }
+    .orb.two { width:280px;height:280px;right:4%;bottom:12%;background:radial-gradient(circle,rgba(76,141,255,.22),transparent 70%); }
+    .web-art { position:absolute; width:min(33vw,360px); opacity:.17; right:2%; top:16%; animation:float 7s ease-in-out infinite; }
+    @keyframes float { 50% { transform:translateY(-14px) rotate(3deg); } }
+    .section-head { max-width:690px; margin: 0 auto 34px }
+    .section-head h2 { font-size:clamp(2.2rem,5vw,4rem); letter-spacing:-.055em; line-height:1.05; margin:12px 0; }
+    .section-head p { color:var(--muted); }
+    .accent-text { color:var(--red); }
+    .glass { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); backdrop-filter:blur(14px); }
+    .football-layout { display:block; }
+    .stadium {
+      min-height:330px; padding:28px; position:relative; overflow:hidden;
+      background:linear-gradient(180deg,rgba(10,15,31,.25),rgba(10,15,31,.96)),
+                 repeating-linear-gradient(0deg,#173b31 0 24px,#1c4938 24px 48px);
+    }
+    .stadium::before { content:"";position:absolute;left:-10%;right:-10%;bottom:-60%;height:100%;border:2px solid rgba(255,255,255,.18);border-radius:50%; }
+    .stadium::after { content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 5% 0%,rgba(255,255,255,.2),transparent 24%),radial-gradient(ellipse at 95% 0%,rgba(255,255,255,.18),transparent 24%); }
+    .stadium-content { position:relative;z-index:1; }
+    .scoreboard { display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.2);background:rgba(5,10,18,.6);padding:14px 16px;border-radius:14px; }
+    .score { font-size:2.2rem;font-weight:950;letter-spacing:.04em; }
+    .score-label { font-size:.7rem;color:#c9d4d4;letter-spacing:.15em; }
+    .player-card { padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:20px; max-width: 500px; min-height: 500px; margin: 0 auto;}
+    .photo-slot { min-height:450px; border:1px dashed rgba(255,255,255,.28);border-radius:18px;display:grid;place-items:center;text-align:center;padding:18px;color:var(--muted);background:linear-gradient(135deg,rgba(255,54,93,.09),rgba(76,141,255,.1)); }
+    .photo-slot strong { display:block;color:white;font-size:1.1rem;margin-bottom:4px; }
+    .photo-slot small { display:block;font-size:.78rem; }
+    .stats { display:grid;grid-template-columns:repeat(3,1fr);gap:8px; }
+    .stat { background:rgba(255,255,255,.045);border:1px solid var(--line);padding:12px 9px;border-radius:13px;text-align:center; }
+    .stat strong { display:block;font-size:1.12rem; }
+    .stat span { display:block;color:var(--muted);font-size:.65rem;letter-spacing:.08em; }
+    .football { display:inline-block;font-size:3rem;filter:drop-shadow(0 8px 15px rgba(0,0,0,.35));animation:float 4s ease-in-out infinite; }
+    .city {
+      min-height:360px;position:relative;overflow:hidden;padding:30px;
+      background:radial-gradient(ellipse at 50% 20%,rgba(76,141,255,.25),transparent 55%),linear-gradient(#101a38,#111329 70%,#080a12);
+    }
+    .cityline { position:absolute;bottom:0;left:0;right:0;height:48%;display:flex;align-items:flex-end;gap:5px;opacity:.85; }
+    .building { flex:1;min-width:16px;background:#101528;border:1px solid rgba(109,232,255,.14);position:relative; }
+    .building::after { content:"";position:absolute;inset:10px 5px;background:repeating-linear-gradient(0deg,transparent 0 13px,rgba(109,232,255,.45) 13px 16px),repeating-linear-gradient(90deg,transparent 0 12px,rgba(255,216,120,.28) 12px 15px);opacity:.55; }
+    .city-copy { position:relative;z-index:2;max-width:600px; }
+    .city-copy h2 { font-size:clamp(2.1rem,5vw,3.8rem);line-height:1.02;letter-spacing:-.05em; }
+    .city-copy p { color:#c6cce2;max-width:530px; }
+    .web-line { height:2px;width:0;background:linear-gradient(90deg,white,var(--cyan));box-shadow:0 0 12px var(--cyan);margin:16px 0;transition:width .45s ease; }
+    .web-line.active { width:min(280px,70%); }
+    .hidden-message { display:none;margin-top:18px;padding:15px 17px;border-left:3px solid var(--red);background:rgba(255,54,93,.09);border-radius:0 12px 12px 0; }
+    .hidden-message.show { display:block;animation:rise .5s ease both; }
+    @keyframes rise { from { opacity:0;transform:translateY(10px); } to { opacity:1;transform:translateY(0); } }
+    .memory-grid { display:grid;grid-template-columns:.9fr 1.1fr;gap:22px;align-items:stretch; }
+    .memory-photo { min-height:300px;display:grid;place-items:center;text-align:center;padding:25px;border:1px dashed rgba(255,255,255,.25);border-radius:var(--radius);background:linear-gradient(145deg,rgba(255,54,93,.11),rgba(76,141,255,.12));color:var(--muted); }
+    .memory-photo .camera { font-size:2.5rem;display:block;margin-bottom:10px; }
+    .letter { padding:clamp(22px,4vw,38px); }
+    .letter h3 { font-size:1.7rem;letter-spacing:-.04em; }
+    .letter p { color:#c2c8df; }
+    .signature { color:var(--red);font-weight:900; }
+    .gift-wrap { text-align:center;padding:clamp(26px,6vw,64px);position:relative;overflow:hidden; }
+    .gift-icon { font-size:5rem;display:block;filter:drop-shadow(0 10px 24px rgba(255,54,93,.25));animation:float 3.2s ease-in-out infinite; }
+    .gift-wrap h2 { font-size:clamp(2.3rem,6vw,4.6rem);line-height:1;letter-spacing:-.06em;margin:18px 0; }
+    .gift-wrap p { color:var(--muted);max-width:600px;margin:0 auto 24px; }
+    .final-message { display:none;max-width:760px;margin:30px auto 0;text-align:left;padding:clamp(22px,4vw,36px);border:1px solid rgba(255,54,93,.28);background:rgba(255,54,93,.06);border-radius:20px; }
+    .final-message.show { display:block;animation:rise .7s ease both; }
+    .final-message p { color:#e2e5f3; }
+    .final-message .big { font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.06em;font-weight:950;color:white; }
+
+    .photo-gallery-wrap { margin-top:24px; text-align:left; }
+    .gallery-heading { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:14px; }
+    .gallery-controls { display:flex; gap:8px; }
+    .gallery-arrow { width:42px; height:42px; border-radius:12px; border:1px solid var(--line); color:white; background:rgba(255,255,255,.06); cursor:pointer; font-size:1.2rem; transition:.2s; }
+    .gallery-arrow:hover { background:rgba(255,54,93,.18); border-color:rgba(255,54,93,.45); }
+    .photo-strip { display:flex; gap:14px; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; padding:3px 2px 16px; scrollbar-color:rgba(109,232,255,.45) rgba(255,255,255,.06); scrollbar-width:thin; }
+    .photo-card { flex:0 0 clamp(220px, 31%, 280px); scroll-snap-align:start; min-width:0; }
+    .photo-placeholder { height:260px; border:1px dashed rgba(255,255,255,.28); border-radius:18px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; padding:18px; color:var(--muted); background:linear-gradient(145deg,rgba(255,54,93,.11),rgba(76,141,255,.12)); overflow:hidden; }
+    .photo-placeholder span { font-size:2.4rem; }
+    .photo-placeholder strong { color:white; font-size:1rem; }
+    .photo-placeholder small { font-size:.76rem; }
+    .photo-caption { color:#c5cbe1; font-size:.83rem; padding:9px 4px 0; }
+    .photo-card img { width:100%; height:260px; object-fit:cover; display:block; border-radius:18px; border:1px solid var(--line); }
+    @media (max-width:600px) { .photo-card { flex-basis:78%; } .photo-placeholder,.photo-card img { height:240px; } }
+    .footer { text-align:center;padding:35px 20px 55px;color:#7f87a5;font-size:.8rem; }
+    .footer strong { color:#dfe3f7;letter-spacing:.12em; }
+    .back-top { position:fixed;z-index:15;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(18,22,42,.9);color:white;cursor:pointer;display:none; }
+    .back-top.visible { display:block; }
+    .toast { position:fixed;z-index:50;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#181e35;border:1px solid rgba(255,216,120,.3);padding:12px 18px;border-radius:12px;box-shadow:var(--shadow);transition:.3s;text-align:center;width:max-content;max-width:calc(100% - 30px); }
+    .toast.show { opacity:1;transform:translate(-50%,0); }
+    #confetti { position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden; }
+    .confetti-piece { position:absolute;top:-20px;width:8px;height:13px;animation:fall linear forwards; }
+    @keyframes fall { to { transform:translate3d(var(--drift),110vh,0) rotate(900deg);opacity:.15; } }
+    .reveal { opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease; }
+    .reveal.in-view { opacity:1;transform:translateY(0); }
+    @media (max-width:760px) {
+      .topbar { top:8px; padding:8px 10px; }
+      .nav { gap:0; }.nav a { font-size:.72rem;padding:7px 6px; }
+      .pill { display:none; }
+      section { width:calc(100% - 28px);padding:78px 0; }
+      .hero { padding:120px 20px 70px; }
+      .football-layout,.memory-grid { grid-template-columns:1fr; }
+      .achievements { grid-template-columns:repeat(2,1fr); }
+      .web-art { width:45vw;right:-7%;top:13%; }
+      .city { min-height:430px;padding:24px; }
+    }
+    @media (max-width:430px) {
+      .brand { font-size:.83rem; }.nav a { font-size:.66rem;padding:7px 5px; }
+      .scoreboard { padding:11px; }.score { font-size:1.7rem; }
+      .stats { grid-template-columns:1fr; }
+      .stat { display:flex;justify-content:space-between;align-items:center;text-align:left;padding:9px 12px; }
+      .stat span { font-size:.65rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after { scroll-behavior:auto !important;animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important; }
+      .reveal { opacity:1;transform:none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Personalize the name and birthday message in the CONFIG object near the bottom. -->
+  <div id="confetti" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Back to top">ZIZO<span>.</span>18</a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#football">Football</a>
+      <a href="#spider">Hero</a>
+      <a href="#gift">Gift</a>
+    </nav>
+    <span class="pill">LEVEL 18</span>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="orb one"></div><div class="orb two"></div>
+      <svg class="web-art" viewBox="0 0 300 300" aria-hidden="true">
+        <g fill="none" stroke="#dceaff" stroke-width="1.2">
+          <path d="M150 0V300M0 150H300M44 44L256 256M256 44L44 256M96 0L204 300M204 0L96 300M0 96L300 204M0 204L300 96"/>
+          <path d="M150 35Q170 75 150 150Q130 75 150 35ZM35 150Q75 130 150 150Q75 170 35 150ZM265 150Q225 130 150 150Q225 170 265 150ZM150 265Q130 225 150 150Q170 225 150 265Z"/>
+          <circle cx="150" cy="150" r="40"/><circle cx="150" cy="150" r="82"/><circle cx="150" cy="150" r="125"/>
+        </g>
+      </svg>
+      <div class="hero-inner">
+        <div class="eyebrow">A little surprise for someone special</div>
+        <h1>LEVEL <span class="accent">18 UNLOCKED</span></h1>
+        <p>New chapter. Bigger dreams. More memories. Today, the world gets a little more legendary — because it's your day, Zizo.</p>
+        <div class="actions">
+          <button class="btn btn-primary" id="enterBtn">ENTER YOUR UNIVERSE <span aria-hidden="true">↗</span></button>
+          <button class="btn btn-secondary" id="musicBtn" aria-pressed="false">♪ Sound: off</button>
+        </div>
+        <div class="scroll-note">Made with love · For the one and only Zizo</div>
+      </div>
+    </section>
+
+    <section id="football">
+      <div class="section-head reveal">
+        <div class="eyebrow">01 / The beautiful game</div>
+        <h2>Born to make <span class="accent-text">history.</span></h2>
+        <p>Some people watch the highlights. Legends make memories. Here's to the goals you score, the comebacks you pull off, and every dream still waiting for you.</p>
+      </div>
+      <div class="football-layout reveal">
+        <div class="player-card glass">
+          <div>
+            <div class="mini-label">PLAYER CARD / 001</div>
+            <h3 style="font-size:1.8rem;margin:8px 0 18px">ZIZO <span style="color:var(--red)">★</span></h3>
+            <div class="photo-slot">
+              <div><strong>📸</strong><small>Replace this area with a favorite picture of him.</small></div>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong>18</strong><span>AGE</span></div>
+            <div class="stat"><strong>99+</strong><span>VIBE</span></div>
+            <div class="stat"><strong>∞</strong><span>POTENTIAL</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="spider">
+      <div class="section-head reveal">
+        <div class="eyebrow">03 / Friendly neighborhood hero</div>
+        <h2>With great power comes <span class="accent-text">great birthdays.</span></h2>
+        <p>A little Spider-Man energy for the guy who's ready to swing into a whole new chapter.</p>
+      </div>
+      <div class="city glass reveal">
+        <div class="cityline" aria-hidden="true">
+          <div class="building" style="height:45%"></div><div class="building" style="height:75%"></div>
+          <div class="building" style="height:55%"></div><div class="building" style="height:92%"></div>
+          <div class="building" style="height:66%"></div><div class="building" style="height:83%"></div>
+          <div class="building" style="height:49%"></div><div class="building" style="height:72%"></div>
+          <div class="building" style="height:58%"></div><div class="building" style="height:88%"></div>
+          <div class="building" style="height:44%"></div>
+        </div>
+        <div class="city-copy">
+          <div class="mini-label">YOUR FRIENDLY NEIGHBORHOOD LEGEND</div>
+          <h2>Keep your heart kind.<br>Keep your mask ready.</h2>
+          <p>Every hero has a story. Today, yours enters a legendary new chapter. Keep being the amazing person you are — brave enough to try, strong enough to keep going, and kind enough to make life better for the people around you.</p>
+          <button class="btn btn-primary" id="webBtn">🕸 SHOOT A WEB</button>
+          <div class="web-line" id="webLine" aria-hidden="true"></div>
+          <div class="hidden-message" id="webMessage" aria-live="polite">Plot twist: the real superpower is having a friend like you. Never forget how much you matter, Zizo. ❤️</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="memories">
+      <div class="section-head reveal">
+        <div class="eyebrow">04 / The memories</div>
+        <h2>The best parts aren't <span class="accent-text">things.</span></h2>
+        <p>They're the people, the random laughs, the late-night conversations, and the memories you don't even realize will matter someday.</p>
+      </div>
+      <div class="memory-grid reveal">
+        <div class="memory-photo">
+          <div><span class="camera">📷</span><strong style="display:block;color:white;font-size:1.1rem">Our favorite memory goes here</strong><small>Replace this panel with a photo of you two.</small></div>
+        </div>
+        <div class="letter glass">
+          <div class="mini-label">A NOTE FROM ME TO YOU</div>
+          <h3>To Zizo, on your 18th ❤️</h3>
+          <p>I hope this year brings you closer to everything you've been wishing for. I hope you find reasons to laugh on the hard days, courage when things feel uncertain, and people who remind you how incredible you are.</p>
+          <p>Thank you for being you. Life moves fast, but I hope we keep collecting ridiculous stories, unforgettable moments, and memories we'll still be laughing about years from now.</p>
+          <p>Whatever this next chapter looks like, I’m cheering for you. Not just today, but every day.</p>
+          <div class="signature">Always in your corner. 🤍</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gift">
+      <div class="gift-wrap glass reveal">
+        <div class="eyebrow">FINAL MISSION / REWARD AVAILABLE</div>
+        <span class="gift-icon" aria-hidden="true">🎁</span>
+        <h2>You've unlocked<br><span class="accent-text">your final reward.</span></h2>
+        <p>One last thing before you go, Zizo. This one comes with all the love in the world. Ready?</p>
+        <button class="btn btn-primary" id="giftBtn">OPEN YOUR GIFT ✨</button>
+        <div class="final-message" id="finalMessage" aria-live="polite">
+          <div class="mini-label">SPECIAL DELIVERY / JUST FOR YOU</div>
+          <div class="big">HAPPY 18TH<br>BIRTHDAY, ZIZO! 🎂</div>
+          <p>Happy birthday, bro! ❤️</p>
+          <p>You're officially entering a whole new chapter of life, and I hope it's filled with happiness, success, unforgettable memories, amazing football moments, and everything you've ever dreamed of.</p>
+          <p>Never stop being yourself, never stop chasing your goals, and never forget how special you are to the people around you.</p>
+          <p>Here's to level 18, new adventures, and becoming the legend you're meant to be. You deserve the absolute best. Happy birthday, legend! 🎂❤️</p>
+          <p><strong>GAME SAVED. LEGEND FOREVER.</strong></p>
+          <div class="photo-gallery-wrap" aria-label="Birthday photo gallery">
+            <div class="gallery-heading">
+              <div><div class="mini-label">OUR LITTLE PHOTO ARCHIVE</div><p style="margin:5px 0 0;color:var(--muted)">Scroll sideways for more memories →</p></div>
+              <div class="gallery-controls">
+                <button class="gallery-arrow" type="button" id="photoLeft" aria-label="Scroll photos left">←</button>
+                <button class="gallery-arrow" type="button" id="photoRight" aria-label="Scroll photos right">→</button>
+              </div>
+            </div>
+            <div class="photo-strip" id="photoStrip" tabindex="0" aria-label="Photos; use left and right arrow keys to scroll">
+              <div class="photo-card"><div class="photo-placeholder"><span>📸</span><strong>Memory #1</strong><small>Replace with your favorite photo</small></div><div class="photo-caption">The good times</div></div>
+              <div class="photo-card"><div class="photo-placeholder"><span>🫂</span><strong>Memory #2</strong><small>Replace with another photo</small></div><div class="photo-caption">Us being us</div></div>
+              <div class="photo-card"><div class="photo-placeholder"><span>😂</span><strong>Memory #3</strong><small>Add a funny moment</small></div><div class="photo-caption">The laughs</div></div>
+              <div class="photo-card"><div class="photo-placeholder"><span>🌟</span><strong>Memory #4</strong><small>Add any special memory</small></div><div class="photo-caption">One for the books</div></div>
+              <div class="photo-card"><div class="photo-placeholder"><span>❤️</span><strong>Memory #5</strong><small>One last favorite photo</small></div><div class="photo-caption">Always a legend</div></div>
+            </div>
+          </div>
+          <button class="btn btn-secondary" id="replayBtn" style="margin-top:20px">↻ REPLAY THE EXPERIENCE</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>GAME SAVED. LEGEND FOREVER.</strong></p>
+    <p>Made with love for Zizo's Level 18 · <span id="year">2026</span></p>
+  </footer>
+  <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // ===================== PERSONALIZE HERE =====================
+    const CONFIG = {
+      friendName: "Zizo",
+      age: 18,
+      birthdayMessage: "Happy 18th birthday, bro! ❤️"
+    };
+    // ============================================================
+
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => document.querySelectorAll(selector);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Keep the name consistent if you personalize CONFIG later.
+    document.title = `${CONFIG.friendName}'s Level ${CONFIG.age} Birthday Experience`;
+    $$(".brand").forEach(el => el.innerHTML = `${CONFIG.friendName.toUpperCase()}<span>.</span>${CONFIG.age}`);
+    $("#year").textContent = new Date().getFullYear();
+
+    $("#enterBtn").addEventListener("click", () => {
+      $("#football").scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+      toast(`Welcome to your universe, ${CONFIG.friendName}!`);
+    });
+
+    // Reveal content as it enters the viewport.
+    if ("IntersectionObserver" in window && !reducedMotion) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .14 });
+      $$(".reveal").forEach(el => observer.observe(el));
+    } else {
+      $$(".reveal").forEach(el => el.classList.add("in-view"));
+    }
+
+
+    $("#webBtn").addEventListener("click", () => {
+      $("#webLine").classList.add("active");
+      $("#webMessage").classList.add("show");
+      $("#webBtn").textContent = "WEB SHOT SUCCESSFUL ✓";
+      burstConfetti(24);
+    });
+
+    let giftOpened = false;
+    $("#giftBtn").addEventListener("click", () => {
+      if (giftOpened) {
+        $("#finalMessage").scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "center" });
+        return;
+      }
+      giftOpened = true;
+      $("#finalMessage").classList.add("show");
+      $("#giftBtn").textContent = "GIFT OPENED ❤️";
+      burstConfetti(170);
+      setTimeout(() => $("#finalMessage").scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "center" }), 180);
+    });
+
+    $("#replayBtn").addEventListener("click", () => {
+      giftOpened = false;
+      $("#finalMessage").classList.remove("show");
+      $("#giftBtn").textContent = "OPEN YOUR GIFT ✨";
+      $("#webLine").classList.remove("active");
+      $("#webMessage").classList.remove("show");
+      $("#webBtn").textContent = "🕸 SHOOT A WEB";
+      window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+    });
+
+    // Lightweight confetti: no external libraries.
+    function burstConfetti(count) {
+      if (reducedMotion) return;
+      const layer = $("#confetti");
+      const colors = ["#ff365d", "#4c8dff", "#6de8ff", "#ffd878", "#ffffff"];
+      for (let i = 0; i < count; i++) {
+        const piece = document.createElement("span");
+        piece.className = "confetti-piece";
+        piece.style.left = `${Math.random() * 100}%`;
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.setProperty("--drift", `${(Math.random() - .5) * 260}px`);
+        piece.style.animationDuration = `${2.1 + Math.random() * 2.8}s`;
+        piece.style.animationDelay = `${Math.random() * .5}s`;
+        piece.style.opacity = `${.65 + Math.random() * .35}`;
+        layer.appendChild(piece);
+        setTimeout(() => piece.remove(), 5500);
+      }
+    }
+
+    let toastTimer;
+    function toast(message) {
+      const el = $("#toast");
+      el.textContent = message;
+      el.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove("show"), 2500);
+    }
+
+    const backTop = $("#backTop");
+    window.addEventListener("scroll", () => {
+      backTop.classList.toggle("visible", window.scrollY > 500);
+    }, { passive: true });
+    backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" }));
+
+    // Horizontal photo gallery controls.
+    const photoStrip = $("#photoStrip");
+    $("#photoLeft").addEventListener("click", () => photoStrip.scrollBy({ left: -photoStrip.clientWidth * .8, behavior: reducedMotion ? "auto" : "smooth" }));
+    $("#photoRight").addEventListener("click", () => photoStrip.scrollBy({ left: photoStrip.clientWidth * .8, behavior: reducedMotion ? "auto" : "smooth" }));
+    photoStrip.addEventListener("keydown", event => {
+      if (event.key === "ArrowRight") photoStrip.scrollBy({ left: 240, behavior: reducedMotion ? "auto" : "smooth" });
+      if (event.key === "ArrowLeft") photoStrip.scrollBy({ left: -240, behavior: reducedMotion ? "auto" : "smooth" });
+    });
+
+    // Optional sound toggle uses a gentle synthesized chime; it never autoplays.
+    let audioContext = null;
+    $("#musicBtn").addEventListener("click", () => {
+      const button = $("#musicBtn");
+      const enabled = button.getAttribute("aria-pressed") !== "true";
+      button.setAttribute("aria-pressed", String(enabled));
+      button.textContent = enabled ? "♪ Sound: on" : "♪ Sound: off";
+      if (enabled) {
+        try {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (!AudioCtx) { toast("Sound isn't supported in this browser."); return; }
+          audioContext = audioContext || new AudioCtx();
+          if (audioContext.state === "suspended") audioContext.resume();
+          const notes = [523.25, 659.25, 783.99];
+          notes.forEach((frequency, i) => {
+            const oscillator = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            oscillator.type = "sine";
+            oscillator.frequency.value = frequency;
+            gain.gain.setValueAtTime(.0001, audioContext.currentTime + i * .14);
+            gain.gain.exponentialRampToValueAtTime(.08, audioContext.currentTime + i * .14 + .03);
+            gain.gain.exponentialRampToValueAtTime(.0001, audioContext.currentTime + i * .14 + .32);
+            oscillator.connect(gain); gain.connect(audioContext.destination);
+            oscillator.start(audioContext.currentTime + i * .14);
+            oscillator.stop(audioContext.currentTime + i * .14 + .34);
+          });
+          toast("A tiny birthday fanfare for you, Zizo 🎵");
+        } catch (error) {
+          toast("Sound couldn't start in this browser.");
+        }
+      } else {
+        toast("Sound turned off.");
+      }
+    });
+  </script>
+</body>
+</html>
