@@ -1102,6 +1102,284 @@
       }
 
     }
+
+    /* ================= RESPONSIVE ADD-ON (nothing above is modified) ================= */
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      overflow-x: hidden;
+    }
+
+    img,
+    svg,
+    video {
+      max-width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      overflow-wrap: anywhere;
+    }
+
+    /* Images fill their frames on every screen */
+    .photo-slot {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .photo-slot img {
+      width: 100%;
+      height: 100%;
+      max-height: 450px;
+      object-fit: cover;
+      display: block;
+      border-radius: 18px;
+    }
+
+    .memory-photo {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .memory-photo img {
+      width: 100%;
+      height: 100%;
+      max-height: 460px;
+      object-fit: cover;
+      display: block;
+      border-radius: var(--radius);
+    }
+
+    /* Hero: fallback for browsers without svh, and safe areas on notched phones */
+    .hero {
+      min-height: 100vh;
+      min-height: 100svh;
+    }
+
+    .back-top {
+      right: max(18px, env(safe-area-inset-right));
+      bottom: max(18px, env(safe-area-inset-bottom));
+    }
+
+    .toast {
+      bottom: max(24px, env(safe-area-inset-bottom));
+    }
+
+    .footer {
+      padding-bottom: max(55px, env(safe-area-inset-bottom));
+    }
+
+    /* Large screens / TVs */
+    @media (min-width: 1500px) {
+      section {
+        width: min(1280px, calc(100% - 80px));
+      }
+
+      .section-head {
+        max-width: 780px;
+      }
+    }
+
+    /* Tablets */
+    @media (max-width: 1024px) {
+      section {
+        padding: 90px 0;
+      }
+
+      .memory-grid {
+        gap: 18px;
+      }
+
+      .photo-card {
+        flex-basis: clamp(220px, 40%, 300px);
+      }
+    }
+
+    /* Small tablets / large phones */
+    @media (max-width: 760px) {
+      .memory-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .memory-photo {
+        min-height: 260px;
+      }
+
+      .player-card {
+        min-height: 0;
+        padding: 20px;
+      }
+
+      .photo-slot {
+        min-height: 340px;
+      }
+
+      .photo-slot img {
+        max-height: 380px;
+      }
+
+      .section-head {
+        margin-bottom: 26px;
+      }
+
+      .actions .btn {
+        flex: 1 1 220px;
+      }
+
+      .gift-icon {
+        font-size: 4rem;
+      }
+
+      .gift-wrap {
+        padding: 28px 18px;
+      }
+
+      .gallery-heading {
+        flex-wrap: wrap;
+      }
+
+      .web-art {
+        opacity: .1;
+      }
+
+      .orb.one,
+      .orb.two {
+        max-width: 60vw;
+        max-height: 60vw;
+      }
+    }
+
+    /* Phones */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: clamp(2.6rem, 13vw, 4rem);
+        letter-spacing: -.06em;
+      }
+
+      .section-head h2 {
+        font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+      }
+
+      .city-copy h2 {
+        font-size: clamp(1.8rem, 8vw, 2.4rem);
+      }
+
+      .gift-wrap h2 {
+        font-size: clamp(2rem, 9vw, 3rem);
+      }
+
+      .final-message .big {
+        font-size: clamp(1.7rem, 8.5vw, 2.4rem);
+      }
+
+      .city {
+        min-height: 460px;
+        padding: 22px;
+      }
+
+      .city-copy .btn {
+        width: 100%;
+      }
+
+      .final-message {
+        padding: 20px 16px;
+      }
+
+      #replayBtn {
+        width: 100%;
+      }
+
+      .gallery-arrow {
+        width: 46px;
+        height: 46px;
+      }
+
+      /* comfortable tap size */
+      .photo-card {
+        flex-basis: 80%;
+      }
+
+      .photo-slot {
+        min-height: 300px;
+      }
+
+      .letter {
+        padding: 22px 18px;
+      }
+
+      .toast {
+        font-size: .9rem;
+      }
+    }
+
+    /* Very small phones (≤ 380px) */
+    @media (max-width: 380px) {
+      section {
+        width: calc(100% - 22px);
+        padding: 64px 0;
+      }
+
+      .hero {
+        padding: 100px 14px 60px;
+      }
+
+      .eyebrow {
+        letter-spacing: .16em;
+        font-size: .68rem;
+      }
+
+      .btn {
+        padding: 12px 14px;
+        font-size: .9rem;
+      }
+
+      .actions .btn {
+        width: 100%;
+      }
+
+      .player-card {
+        padding: 16px;
+      }
+
+      .photo-slot {
+        min-height: 260px;
+      }
+
+      .photo-card {
+        flex-basis: 86%;
+      }
+
+      .scroll-note {
+        letter-spacing: .08em;
+      }
+    }
+
+    /* Phones in landscape (short screens) */
+    @media (max-height: 520px) and (orientation: landscape) {
+      .hero {
+        min-height: auto;
+        padding: 70px 22px 50px;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 9vh, 4rem);
+        margin: 12px 0;
+      }
+
+      .scroll-note {
+        margin-top: 20px;
+      }
+    }
+
+    /* Touch devices: no sticky hover lift */
+    @media (hover: none) {
+      .btn:hover {
+        transform: none;
+      }
+    }
   </style>
 
 </head>
